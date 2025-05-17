@@ -1,3 +1,5 @@
+<!-- filepath: [README.md](http://_vscodecontentref_/1) -->
+
 # Cypress Tests
 
 This project contains Cypress end-to-end tests.
