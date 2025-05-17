@@ -22,3 +22,5 @@ This project contains Cypress end-to-end tests.
 
 - **[Git Workflow Strategy](https://github.com/MikitaZhyhadla/cypress-tests/blob/master/docs/git-strategy.md)**
 - **[VS Code Hotkeys](https://github.com/MikitaZhyhadla/cypress-tests/blob/master/docs/hotkeys.md)**
+
+<!-- learning/session-1 -->
