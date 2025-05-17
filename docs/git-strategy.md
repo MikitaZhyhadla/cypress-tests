@@ -37,6 +37,18 @@
 - Assign reviewers.
 - Wait for approval and conflict resolution before merging.
 
+## Branch Rules (Enforced by Repository Settings)
+
+- Direct commits to the `master` branch are **not allowed**
+- All changes must go through Pull Requests (PR)
+- Each PR must be approved by **at least 1 reviewer**
+- Approval is reset if new commits are pushed to the PR
+- The most recent reviewable push must be approved by someone other than the author
+- All conversations must be resolved before merging
+- Only **squash merges** are allowed to keep commit history clean
+- **Force pushes** to `master` are blocked
+- **Automatic deletion of source branches** is enabled after a PR is merged
+
 ---
 
 *This document helps organize Git workflow in our project and makes the development process clear and efficient.*
