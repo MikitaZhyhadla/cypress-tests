@@ -34,7 +34,7 @@
 
 - Always use PRs to merge branches.
 - Add a description of the changes.
-- Assign reviewers...
+- Assign reviewers.
 - Wait for approval and conflict resolution before merging.
 
 ---
