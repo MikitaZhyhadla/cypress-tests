@@ -1,42 +1,26 @@
 # Git Workflow Strategy
 
-## Main Branches
+## Main Branch
 
-- **master** — the main branch with stable, release-ready code.
-- **feature/** — branches for new features. Naming: `feature/description`
-- **bugfix/** — branches for fixing bugs. Naming: `bugfix/description`
-- **hotfix/** — urgent fixes directly on production.
+- **main** — the default branch with reviewed and stable code
 
-## Branching Rules
+## Feature Branches
 
-- All new work should be done in separate branches (feature, bugfix, etc.).
-- Branch names should be clear and descriptive (e.g., `feature/login-page`).
-- Always create a Pull Request (PR) before merging to master.
-- PRs must be code-reviewed by teammates.
-- Before merging, update your branch from master and resolve conflicts if any.
+- Create feature branches with descriptive names:
+  - `feature/login-form`
+  - `feature/cart-ui`
 
-## Commits
+## Git Flow
 
-- Write clear and concise commit messages.
-- Message format:  
-  `<type>: <short description>`  
-  For example:  
-  `feat: add login form`  
-  `fix: correct validation error`
+- All work must be done in feature branches
+- All changes must go through a Pull Request (PR)
+- PRs must be reviewed and approved before merging
 
-- Use commit types:  
-  - `feat` — new feature  
-  - `fix` — bug fix  
-  - `chore` — maintenance tasks (dependency updates, CI config, etc.)  
-  - `docs` — documentation
+## Commit Messages
 
-## Pull Requests (PR)
+Since squash merge is used, prefer short and meaningful commit messages:
 
-- Always use PRs to merge branches.
-- Add a description of the changes.
-- Assign reviewers.
-- Wait for approval and conflict resolution before merging.
+- Example: `add login form validation`
+- Avoid long or complex prefixes like `feat:` or `fix:`
 
----
-
-*This document helps organize Git workflow in our project and makes the development process clear and efficient.*
+This simple strategy helps maintain a clean, readable history.
