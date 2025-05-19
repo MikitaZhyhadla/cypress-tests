@@ -24,10 +24,10 @@
   `feat: add login form`  
   `fix: correct validation error`
 
-- Use commit types:  
-  - `feat` — new feature  
-  - `fix` — bug fix  
-  - `chore` — maintenance tasks (dependency updates, CI config, etc.)  
+- Use commit types:
+  - `feat` — new feature
+  - `fix` — bug fix
+  - `chore` — maintenance tasks (dependency updates, CI config, etc.)
   - `docs` — documentation
 
 ## Pull Requests (PR)
@@ -51,4 +51,4 @@
 
 ---
 
-*This document helps organize Git workflow in our project and makes the development process clear and efficient.*
+_This document helps organize Git workflow in our project and makes the development process clear and efficient._
