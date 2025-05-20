@@ -1,60 +1,45 @@
 # Naming Conventions
 
-## 📁 Files
+To ensure consistency and readability across the project, follow the naming conventions below.
 
-- Use **kebab-case** for all filenames:  
-  Examples:
-  - `login-page.cy.js`
-  - `user-profile.cy.js`
-- Test files should follow the pattern:
+## Pages
+
+- Use lowercase and kebab-case (hyphen-separated).
+- Example: `login-page`, `cart-page`, `checkout-complete`
+
+## Components
+
+- Use camelCase for variables and functions.
+- Use PascalCase for component names (if applicable).
+- Examples:
+  - Variable: `continueShoppingButton`
+  - Function: `validateLoginForm()`
+  - Component: `CartItem`, `LoginForm`
+
+## Selectors
+
+- Group selectors by page in `selectors.js`.
+- Use clear, descriptive names that reflect the element purpose and context.
+- Example for login page:
+  ```js
+  export const loginPage = {
+    usernameInput: '#user-name',
+    passwordInput: '#password',
+    loginButton: '#login-button',
+  }
   ```
-  [page/component]-[flow].cy.js
-  ```
 
-## 📂 Folders
+## Files and Directories
 
-- Use folder names that reflect the route or feature:  
-  Examples:
-  - `/login/`
-  - `/cart/`
-  - `/checkout/`
+- Use lowercase and kebab-case.
+- Place page-related files in separate folders under `/cypress/e2e/`.
 
-## 📌 Selectors (in `selectors.js`)
+## Test Files
 
-- Group selectors by page or component
-- Use **camelCase** for selector keys
-- Example:
+- Use `.ui.spec.js` suffix for UI tests.
+- Example: `login-page.ui.spec.js`
 
-```js
-export const loginPage = {
-  usernameInput: '#user-name',
-  passwordInput: '#password',
-  loginButton: '#login-button',
-}
-```
+## Environment and Data Files
 
-## 🧱 Constants (in `requirements.js`)
-
-- Use **UPPER_CASE** for constant keys
-- Group by feature or flow
-- Example:
-
-```js
-export const CHECKOUT_LIMIT = 10
-export const MAX_USERNAME_LENGTH = 32
-```
-
-## 🌍 Localization Keys (in `l10n.json`)
-
-- Use **dot notation** to represent nesting:
-
-  - `login.error.requiredField`
-  - `checkout.summary.total`
-
-- Group by screen/flow
-
-## 💡 Notes
-
-- Keep naming **short but descriptive**
-- Maintain **consistency** across files, folders, and selectors
-- Prefer **clarity over abbreviation**
+- Use snake_case for JSON config and test data files.
+- Examples: `env_users.json`, `product_data.json`
