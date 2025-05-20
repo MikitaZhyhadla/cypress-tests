@@ -3,10 +3,10 @@
 ## 📁 Files
 
 - Use **kebab-case** for all filenames:  
-  Examples:  
-  - `login-page.cy.js`  
+  Examples:
+  - `login-page.cy.js`
   - `user-profile.cy.js`
-- Test files should follow the pattern:  
+- Test files should follow the pattern:
   ```
   [page/component]-[flow].cy.js
   ```
@@ -14,9 +14,9 @@
 ## 📂 Folders
 
 - Use folder names that reflect the route or feature:  
-  Examples:  
-  - `/login/`  
-  - `/cart/`  
+  Examples:
+  - `/login/`
+  - `/cart/`
   - `/checkout/`
 
 ## 📌 Selectors (in `selectors.js`)
@@ -30,7 +30,7 @@ export const loginPage = {
   usernameInput: '#user-name',
   passwordInput: '#password',
   loginButton: '#login-button',
-};
+}
 ```
 
 ## 🧱 Constants (in `requirements.js`)
@@ -40,13 +40,14 @@ export const loginPage = {
 - Example:
 
 ```js
-export const CHECKOUT_LIMIT = 10;
-export const MAX_USERNAME_LENGTH = 32;
+export const CHECKOUT_LIMIT = 10
+export const MAX_USERNAME_LENGTH = 32
 ```
 
 ## 🌍 Localization Keys (in `l10n.json`)
 
 - Use **dot notation** to represent nesting:
+
   - `login.error.requiredField`
   - `checkout.summary.total`
 
