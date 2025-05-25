@@ -1,6 +1,6 @@
 // e2e support file
 import './commands';
-import { l10n } from './l10n.json';
+import l10n from './l10n.json';
 import { reqs } from './requirements';
 import { urls } from './urls';
 import { selectors } from './selectors';
