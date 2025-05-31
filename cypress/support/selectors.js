@@ -1,4 +1,5 @@
-// selectors.js
+// cypress/support/selectors.js
+
 export const loginPage = {
   usernameInput: '#user-name',
   passwordInput: '#password',

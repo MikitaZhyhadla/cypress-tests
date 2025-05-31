@@ -1,4 +1,5 @@
-// e2e support file
+// cypress/support/e2e.js
+
 import './commands';
 import l10n from './l10n.json';
 import { reqs } from './requirements';
