@@ -1,11 +1,12 @@
 // cypress/support/selectors.js
 
-export const loginPage = {
-  usernameInput: '#user-name',
-  passwordInput: '#password',
-  loginButton: '#login-button',
-};
-
-export const cartPage = {
-  continueShopping: '[data-test="continue-shopping"]',
+export const selectors = {
+  loginPage: {
+    usernameInput: '#user-name',
+    passwordInput: '#password',
+    loginButton: '#login-button',
+  },
+  cartPage: {
+    continueShopping: '[data-test="continue-shopping"]',
+  }
 };
