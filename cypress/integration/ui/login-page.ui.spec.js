@@ -4,7 +4,7 @@ describe('Login Page', { testIsolation: false }, () => {
   context('Valid Login', () => {
     beforeEach(() => {
       cy.visit('/');
-      cy.loginAs(Cypress.env('users').standard);
+      cy.loginAs(Cypress.env('users').standardUser);
     });
 
     it('Then user should be redirected to inventory page', () => {
