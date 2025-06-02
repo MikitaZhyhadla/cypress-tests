@@ -5,16 +5,16 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
     cy.visit('/');
   });
 
+  it('Login Page: Then login page title should be visible', () => {
+    // Given login page
+    // When user opens login page
+    // Then title should be visible
+    cy.get('.login_logo').should('have.text', 'Swag Labs').and('be.visible');
+  });
+
   context('Login Page: When user submits valid standard credentials', () => {
     beforeEach(() => {
       cy.loginAs(Cypress.env('users').standardUser);
-    });
-
-    it('Login Page: Then login page title should be visible', () => {
-      // Given login page
-      // When user opens login page
-      // Then title should be visible
-      cy.get('#login_button_container .login_logo').should('have.text', 'Swag Labs').and('be.visible');
     });
 
     it('Login Page: Then user should be redirected to inventory page', () => {
