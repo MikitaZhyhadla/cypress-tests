@@ -16,3 +16,7 @@ yarn-error.log*
 # OS system files
 .DS_Store
 Thumbs.db
+
+# Sensitive test data
+cypress/sensitive-data/
+!cypress/sensitive-data/qa-users.example.json
