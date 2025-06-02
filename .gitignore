@@ -18,4 +18,5 @@ yarn-error.log*
 Thumbs.db
 
 # Sensitive test data
-cypress/sensitive-data/qa-users.json
+cypress/sensitive-data/
+!cypress/sensitive-data/qa-users.example.json
