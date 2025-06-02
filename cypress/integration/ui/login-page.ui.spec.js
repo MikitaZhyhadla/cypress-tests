@@ -10,6 +10,13 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
       cy.loginAs(Cypress.env('users').standardUser);
     });
 
+    it('Login Page: Then login page title should be visible', () => {
+      // Given login page
+      // When user opens login page
+      // Then title should be visible
+      cy.get('#login_button_container .login_logo').should('have.text', 'Swag Labs').and('be.visible');
+    });
+
     it('Login Page: Then user should be redirected to inventory page', () => {
       // Given login page
       // When user logs in with standard credentials
@@ -33,7 +40,6 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
       // Given login form
       // When user logs in with locked out user
       // Then should show locked out error
-      // Not implemented yet
     });
   });
 
@@ -42,7 +48,6 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
       // Given login form
       // When user submits incorrect credentials
       // Then should show invalid login error
-      // Not implemented yet
     });
   });
 });
