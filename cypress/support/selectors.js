@@ -1,7 +1,8 @@
 // cypress/support/selectors.js
 
-export const selectors = {
+const selectors = {
   loginPage: {
+    title: '.login_logo',
     usernameInput: '#user-name',
     passwordInput: '#password',
     loginButton: '#login-button',
@@ -10,3 +11,5 @@ export const selectors = {
     continueShopping: '[data-test="continue-shopping"]',
   }
 };
+
+export default selectors;
