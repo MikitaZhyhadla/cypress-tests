@@ -17,17 +17,15 @@ describe('Login Page: Given no preconditions', {testIsolation: false}, () => {
         });
     });
 
-    context.skip('Login Page: When user submits valid standard credentials', () => {
-        beforeEach(() => {
-            cy.loginAs(Cypress.env('users').standardUser);
+    context('Login Page: When user submits valid standard credentials', () => {
+        before(() => {
+            cy.loginAs(users.StandardUser);
         });
-
         it('Login Page: Then user should be redirected to inventory page', () => {
             // Given login page
             // When user logs in with standard credentials
             // Then user should be redirected to inventory page
             cy.url().should('include', '/inventory.html');
-
         });
     });
 

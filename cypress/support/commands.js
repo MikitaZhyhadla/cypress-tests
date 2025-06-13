@@ -2,13 +2,14 @@
 
 // Custom command to perform login with given user credentials
 Cypress.Commands.add('loginAs', (user) => {
+  const { username, password } = user;
   cy.visit('/');
   cy.then(()=>{
-    cy.get(Cypress.env('selectors').loginPage.usernameInput).type(user.username);
-    cy.get(Cypress.env('selectors').loginPage.passwordInput).type(user.password);
+    cy.get(loginPage.usernameInput).type(username);
+    cy.get(loginPage.passwordInput).type(password);
   });
   cy.then(()=>{
-    cy.get(Cypress.env('selectors').loginPage.loginButton).click();
+    cy.get(loginPage.loginButton).click();
   });
 });
 
