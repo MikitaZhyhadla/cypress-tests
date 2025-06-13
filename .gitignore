@@ -7,6 +7,7 @@ cypress/screenshots/
 
 # VS Code settings
 .vscode/
+.idea/
 
 # Logs
 npm-debug.log*
@@ -16,3 +17,7 @@ yarn-error.log*
 # OS system files
 .DS_Store
 Thumbs.db
+
+# Sensitive test data
+!cypress/sensitive-data/env-users.example.json
+cypress/sensitive-data/**
