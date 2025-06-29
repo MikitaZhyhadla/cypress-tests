@@ -1,22 +1,22 @@
 {
   "StandardUser": {
-    "username": "standard_user",
-    "password": "secret_sauce"
+    "username": "your_username",
+    "password": "your_password"
   },
   "LockedUser": {
-    "username": "locked_out_user",
-    "password": "secret_sauce"
+    "username": "your_username",
+    "password": "your_password"
   },
   "ProblemUser": {
-    "username": "problem_user",
-    "password": "secret_sauce"
+    "username": "your_username",
+    "password": "your_password"
   },
   "ErrorUser": {
-    "username": "error_user",
-    "password": "secret_sauce"
+    "username": "your_username",
+    "password": "your_password"
   },
   "VisualUser": {
-    "username": "visual_user",
-    "password": "secret_sauce"
+    "username": "your_username",
+    "password": "your_password"
   }
 }
