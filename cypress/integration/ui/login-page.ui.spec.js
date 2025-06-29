@@ -23,7 +23,7 @@ describe('Login Page: Given no preconditions', { testIsolation: false }, () => {
 
   context('Login Page: When user submits valid standard credentials', () => {
     before(() => {
-      cy.loginAs(users.standardUser);
+      cy.loginAs(Cypress.env('users').standardUser);
     });
 
     it('Login Page: Then user should be redirected to inventory page', () => {
