@@ -2,10 +2,11 @@
 
 ## Main Branch
 
-- **main** — the default branch with reviewed and stable code
+- **main** — the default branch with reviewed and stable code.
 - Direct commits to the main branch are **not allowed**.
 - Only squash merges are allowed into the main branch.
 - After a pull request is merged, the source branch is **automatically deleted**.
+- The latest commit must be **approved before merging** to avoid stale approvals.
 
 ## Feature Branches
 
