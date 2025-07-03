@@ -18,5 +18,9 @@
   "VisualUser": {
     "username": "your_username",
     "password": "your_password"
+  },
+  "PerformanceGlitchUser": {
+    "username": "your_username",
+    "password": "your_password"
   }
 }
