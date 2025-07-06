@@ -22,6 +22,7 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
         })
       })
     })
+
     it('Inventory Page: Then each product should have an image', () => {
       cy.get('.inventory_item_img img')
         .should('have.length', 6)
@@ -33,19 +34,25 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
             })
         })
     })
-  })
-  it.skip('Inventory Page: Then product title "Test.allTheThings() T-Shirt (Red)" should match expected name', () => {
-    // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/4
-    cy.get('.inventory_item_name')
-      .contains('Test.allTheThings() T-Shirt (Red)')
-      .should('have.text', 'Sauce Labs T-Shirt (Red)') // example expected name
-  })
-  it.skip('Inventory Page: Then product description for "Sauce Labs Backpack" should match expected content', () => {
-    // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/5
-    cy.get('.inventory_item')
-      .contains('.inventory_item_name', 'Sauce Labs Backpack')
-      .parents('.inventory_item')
-      .find('.inventory_item_desc')
-      .should('have.text', 'Sleek and protective laptop backpack for everyday use.') // Example expected description
+
+    it.skip('Inventory Page: Then product title "Test.allTheThings() T-Shirt (Red)" should match expected name', () => {
+      // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/4
+      cy.get('.inventory_item_name')
+        .contains('Test.allTheThings() T-Shirt (Red)')
+        .should('have.text', 'Sauce Labs T-Shirt (Red)') // example expected name
+    })
+
+    it.skip('Inventory Page: Then product description for "Sauce Labs Backpack" should match expected content', () => {
+      // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/5
+      cy.get('.inventory_item')
+        .contains('.inventory_item_name', 'Sauce Labs Backpack')
+        .parents('.inventory_item')
+        .find('.inventory_item_desc')
+        .should('have.text', 'Sleek and protective laptop backpack for everyday use.') // Example expected description
+    })
+
+    it('Inventory Page: Then the cart badge should not be visible when no items are added', () => {
+      cy.get('.shopping_cart_badge').should('not.exist')
+    })
   })
 })
