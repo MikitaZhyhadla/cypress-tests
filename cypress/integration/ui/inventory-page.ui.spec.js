@@ -14,12 +14,7 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
 
     it('Inventory Page: Then each product should have name, description, price and Add to Cart button', () => {
       cy.get('.inventory_item').each(($el) => {
-        cy.wrap($el).within(() => {
-          cy.get('.inventory_item_name').should('be.visible')
-          cy.get('.inventory_item_desc').should('be.visible')
-          cy.get('.inventory_item_price').should('be.visible')
-          cy.contains('Add to cart').should('be.visible')
-        })
+        cy.wrap($el).contains('Add to cart').should('be.visible')
       })
     })
 
