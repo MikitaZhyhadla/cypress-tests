@@ -49,5 +49,73 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
     it('Inventory Page: Then the cart badge should not be visible when no items are added', () => {
       cy.get('.shopping_cart_badge').should('not.exist')
     })
+
+    it('Inventory Page: Then the burger menu should be visible', () => {
+      cy.get('#react-burger-menu-btn').should('be.visible')
+    })
+
+    it('Inventory Page: Then the Twitter icon should be visible in the footer', () => {
+      cy.get('.social_twitter').should('be.visible')
+    })
+
+    it('Inventory Page: Then the Facebook icon should be visible in the footer', () => {
+      cy.get('.social_facebook').should('be.visible')
+    })
+
+    it('Inventory Page: Then the LinkedIn icon should be visible in the footer', () => {
+      cy.get('.social_linkedin').should('be.visible')
+    })
+
+    it('Inventory Page: Then the footer text should be visible and correct', () => {
+      cy.get('.footer_copy')
+        .should('be.visible')
+        .and(
+          'contain.text',
+          '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'
+        )
+    })
+
+    it('Inventory Page: Then the filter should default to "Name (A to Z)" and sort items correctly', () => {
+      cy.get('.product_sort_container').should('have.value', 'az')
+      cy.get('.inventory_item_name').then(($items) => {
+        const names = [...$items].map((el) => el.innerText)
+        const sortedNames = [...names].sort()
+        expect(names).to.deep.equal(sortedNames)
+      })
+    })
+
+    it('Inventory Page: Then the filter dropdown should show all filter options', () => {
+      cy.get('.product_sort_container option').should(($options) => {
+        const values = [...$options].map((opt) => opt.value)
+        expect(values).to.include.members(['az', 'za', 'lohi', 'hilo'])
+      })
+    })
+
+    it('Inventory Page: Then selecting "Name (Z to A)" sorts items correctly', () => {
+      cy.get('.product_sort_container').select('za')
+      cy.get('.inventory_item_name').then(($items) => {
+        const names = [...$items].map((el) => el.innerText)
+        const sortedNames = [...names].sort().reverse()
+        expect(names).to.deep.equal(sortedNames)
+      })
+    })
+
+    it('Inventory Page: Then selecting "Price (low to high)" sorts items correctly', () => {
+      cy.get('.product_sort_container').select('lohi')
+      cy.get('.inventory_item_price').then(($items) => {
+        const prices = [...$items].map((el) => parseFloat(el.innerText.replace('$', '')))
+        const sortedPrices = [...prices].sort((a, b) => a - b)
+        expect(prices).to.deep.equal(sortedPrices)
+      })
+    })
+
+    it('Inventory Page: Then selecting "Price (high to low)" sorts items correctly', () => {
+      cy.get('.product_sort_container').select('hilo')
+      cy.get('.inventory_item_price').then(($items) => {
+        const prices = [...$items].map((el) => parseFloat(el.innerText.replace('$', '')))
+        const sortedPrices = [...prices].sort((a, b) => b - a)
+        expect(prices).to.deep.equal(sortedPrices)
+      })
+    })
   })
 })
