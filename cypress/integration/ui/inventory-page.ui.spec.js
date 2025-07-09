@@ -12,7 +12,28 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
       cy.get('.inventory_item').should('have.length', 6)
     })
 
-    it('Inventory Page: Then each product should have name, description, price and Add to Cart button', () => {
+    it('Inventory Page: Then each product should have a name', () => {
+      cy.get('.inventory_item_name').each(($el) => {
+        cy.wrap($el).should('be.visible').and('not.be.empty')
+      })
+    })
+
+    it('Inventory Page: Then each product should have a description', () => {
+      cy.get('.inventory_item_desc').each(($el) => {
+        cy.wrap($el).should('be.visible').and('not.be.empty')
+      })
+    })
+
+    it('Inventory Page: Then each product should have a price', () => {
+      cy.get('.inventory_item_price').each(($el) => {
+        cy.wrap($el)
+          .should('be.visible')
+          .invoke('text')
+          .should('match', /^\$\d+\.\d{2}$/)
+      })
+    })
+
+    it('Inventory Page: Then each product should have an "Add to cart" button', () => {
       cy.get('.inventory_item').each(($el) => {
         cy.wrap($el).contains('Add to cart').should('be.visible')
       })
