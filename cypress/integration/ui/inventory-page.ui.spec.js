@@ -99,43 +99,50 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
     it('Inventory Page: Then the filter should default to "Name (A to Z)" and sort items correctly', () => {
       cy.get('.product_sort_container').should('have.value', 'az')
       cy.get('.inventory_item_name').then(($items) => {
-        const names = [...$items].map((el) => el.innerText)
-        const sortedNames = [...names].sort()
-        expect(names).to.deep.equal(sortedNames)
+        const names = [...$items].map((el) => el.textContent.trim())
+        const sorted = [...names].sort((a, b) => a.localeCompare(b))
+        expect(names).to.deep.equal(sorted)
       })
     })
 
-    it('Inventory Page: Then the filter dropdown should show all filter options', () => {
-      cy.get('.product_sort_container option').should(($options) => {
-        const values = [...$options].map((opt) => opt.value)
-        expect(values).to.include.members(['az', 'za', 'lohi', 'hilo'])
+    context('Inventory Page: When user interacts with filter dropdown', () => {
+      it('Then filter dropdown should show filter options', () => {
+        const expectedOptions = ['az', 'za', 'lohi', 'hilo']
+        cy.get('.product_sort_container option').then(($options) => {
+          const actualOptions = [...$options].map((el) => el.value)
+          expect(actualOptions).to.include.members(expectedOptions)
+        })
       })
-    })
 
-    it('Inventory Page: Then selecting "Name (Z to A)" sorts items correctly', () => {
-      cy.get('.product_sort_container').select('za')
-      cy.get('.inventory_item_name').then(($items) => {
-        const names = [...$items].map((el) => el.innerText)
-        const sortedNames = [...names].sort().reverse()
-        expect(names).to.deep.equal(sortedNames)
+      it('Then selecting "Name (Z to A)" sorts items correctly', () => {
+        cy.get('.product_sort_container').select('za')
+        cy.get('.inventory_item_name').then(($items) => {
+          const names = [...$items].map((el) => el.textContent.trim())
+          const sorted = [...names].sort((a, b) => b.localeCompare(a))
+          expect(names).to.deep.equal(sorted)
+        })
       })
-    })
 
-    it('Inventory Page: Then selecting "Price (low to high)" sorts items correctly', () => {
-      cy.get('.product_sort_container').select('lohi')
-      cy.get('.inventory_item_price').then(($items) => {
-        const prices = [...$items].map((el) => parseFloat(el.innerText.replace('$', '')))
-        const sortedPrices = [...prices].sort((a, b) => a - b)
-        expect(prices).to.deep.equal(sortedPrices)
+      it('Then selecting "Price (low to high)" sorts items correctly', () => {
+        cy.get('.product_sort_container').select('lohi')
+        cy.get('.inventory_item_price').then(($prices) => {
+          const numbers = [...$prices].map((el) =>
+            parseFloat(el.textContent.replace('$', '').trim())
+          )
+          const sorted = [...numbers].sort((a, b) => a - b)
+          expect(numbers).to.deep.equal(sorted)
+        })
       })
-    })
 
-    it('Inventory Page: Then selecting "Price (high to low)" sorts items correctly', () => {
-      cy.get('.product_sort_container').select('hilo')
-      cy.get('.inventory_item_price').then(($items) => {
-        const prices = [...$items].map((el) => parseFloat(el.innerText.replace('$', '')))
-        const sortedPrices = [...prices].sort((a, b) => b - a)
-        expect(prices).to.deep.equal(sortedPrices)
+      it('Then selecting "Price (high to low)" sorts items correctly', () => {
+        cy.get('.product_sort_container').select('hilo')
+        cy.get('.inventory_item_price').then(($prices) => {
+          const numbers = [...$prices].map((el) =>
+            parseFloat(el.textContent.replace('$', '').trim())
+          )
+          const sorted = [...numbers].sort((a, b) => b - a)
+          expect(numbers).to.deep.equal(sorted)
+        })
       })
     })
   })
