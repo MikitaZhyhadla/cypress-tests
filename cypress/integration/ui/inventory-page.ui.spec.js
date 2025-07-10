@@ -159,5 +159,61 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
         })
       })
     })
+
+    context('Inventory Page: When user clicks Add to cart on first random product', () => {
+      before(() => {
+        cy.get('.inventory_item').eq(0).find('button').contains('Add to cart').click()
+      })
+
+      it('Inventory Page: Then Cart badge shows 1', () => {
+        cy.get('.shopping_cart_badge').should('have.text', '1').and('be.visible')
+      })
+
+      it('Inventory Page: Then Add to cart button is changed to Remove button', () => {
+        cy.get('.inventory_item')
+          .eq(0)
+          .find('button')
+          .should('have.text', 'Remove')
+          .and('be.visible')
+      })
+    })
+
+    context('Inventory Page: When user clicks Add to cart on second random product', () => {
+      before(() => {
+        cy.get('.inventory_item').eq(1).find('button').contains('Add to cart').click()
+      })
+
+      it('Inventory Page: Then Cart badge shows 2', () => {
+        cy.get('.shopping_cart_badge').should('have.text', '2').and('be.visible')
+      })
+    })
+
+    context('Inventory Page: When user clicks Add to cart on third random product', () => {
+      before(() => {
+        cy.get('.inventory_item').eq(2).find('button').contains('Add to cart').click()
+      })
+
+      it('Inventory Page: Then Cart badge shows 3', () => {
+        cy.get('.shopping_cart_badge').should('have.text', '3').and('be.visible')
+      })
+    })
+
+    context('Inventory Page: When user removes the first product from cart', () => {
+      before(() => {
+        cy.get('.inventory_item').eq(0).find('button').contains('Remove').click()
+      })
+
+      it('Inventory Page: Then Cart badge shows 2', () => {
+        cy.get('.shopping_cart_badge').should('have.text', '2').and('be.visible')
+      })
+
+      it('Inventory Page: Then Remove button is changed back to Add to cart', () => {
+        cy.get('.inventory_item')
+          .eq(0)
+          .find('button')
+          .should('have.text', 'Add to cart')
+          .and('be.visible')
+      })
+    })
   })
 })
