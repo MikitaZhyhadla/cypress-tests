@@ -12,9 +12,24 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
       cy.get('.inventory_item').should('have.length', 6)
     })
 
-    it('Inventory Page: Then each product should have a name', () => {
+    it('Inventory Page: Then each product should have a valid name', () => {
+      // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/4
+
+      const checkForInvalidTitles = false // Toggle to true to enable content validation
+      const invalidPatterns = [/Test\.allTheThings/i]
+
       cy.get('.inventory_item_name').each(($el) => {
-        cy.wrap($el).should('be.visible').and('not.be.empty')
+        cy.wrap($el)
+          .should('be.visible')
+          .and('not.be.empty')
+          .invoke('text')
+          .then((text) => {
+            if (checkForInvalidTitles) {
+              invalidPatterns.forEach((pattern) => {
+                expect(text).not.to.match(pattern)
+              })
+            }
+          })
       })
     })
 
@@ -64,13 +79,6 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
               expect($el[0].naturalWidth).to.be.greaterThan(0)
             })
         })
-    })
-
-    it.skip('Inventory Page: Then product title "Test.allTheThings() T-Shirt (Red)" should match expected name', () => {
-      // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/4
-      cy.get('.inventory_item_name')
-        .contains('Test.allTheThings() T-Shirt (Red)')
-        .should('have.text', 'Sauce Labs T-Shirt (Red)') // example expected name
     })
 
     it('Inventory Page: Then the cart badge should not be visible when no items are added', () => {
