@@ -1,3 +1,4 @@
+let selectedProducts = []
 describe('Inventory Page: Given user is authenticated', { testIsolation: false }, () => {
   context('Inventory Page: When user lands on inventory page', () => {
     before(() => {
@@ -15,7 +16,7 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
     it('Inventory Page: Then each product should have a valid name', () => {
       // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/4
 
-      const checkForInvalidTitles = false // Toggle to true to enable content validation
+      const checkForInvalidTitles = false // Toggle to enable content validation
       const invalidPatterns = [/Test\.allTheThings/i]
 
       cy.get('.inventory_item_name').each(($el) => {
@@ -36,7 +37,7 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
     it('Inventory Page: Then each product should have a valid description', () => {
       // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/5
 
-      const checkPatterns = false // Toggle to true to enable content validation
+      const checkPatterns = false // Toggle to enable content validation
       const invalidPatterns = [/carry\.allTheThings/i]
 
       cy.get('.inventory_item_desc').each(($el) => {
@@ -162,7 +163,12 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
 
     context('Inventory Page: When user clicks Add to cart on first random product', () => {
       before(() => {
-        cy.get('.inventory_item').eq(0).find('button').contains('Add to cart').click()
+        cy.get('.inventory_item').eq(0).as('product0')
+        cy.get('@product0')
+          .find('.inventory_item_name')
+          .invoke('text')
+          .then((name) => selectedProducts.push(name.trim()))
+        cy.get('@product0').find('button').contains('Add to cart').click()
       })
 
       it('Inventory Page: Then Cart badge shows 1', () => {
@@ -180,7 +186,12 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
 
     context('Inventory Page: When user clicks Add to cart on second random product', () => {
       before(() => {
-        cy.get('.inventory_item').eq(1).find('button').contains('Add to cart').click()
+        cy.get('.inventory_item').eq(1).as('product1')
+        cy.get('@product1')
+          .find('.inventory_item_name')
+          .invoke('text')
+          .then((name) => selectedProducts.push(name.trim()))
+        cy.get('@product1').find('button').contains('Add to cart').click()
       })
 
       it('Inventory Page: Then Cart badge shows 2', () => {
@@ -188,31 +199,27 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
       })
     })
 
-    context('Inventory Page: When user clicks Add to cart on third random product', () => {
+    context('Inventory Page: When user clicks Cart icon', () => {
       before(() => {
-        cy.get('.inventory_item').eq(2).find('button').contains('Add to cart').click()
+        cy.get('.shopping_cart_link').click()
       })
 
-      it('Inventory Page: Then Cart badge shows 3', () => {
-        cy.get('.shopping_cart_badge').should('have.text', '3').and('be.visible')
-      })
-    })
-
-    context('Inventory Page: When user removes the first product from cart', () => {
-      before(() => {
-        cy.get('.inventory_item').eq(0).find('button').contains('Remove').click()
+      it('Cart Page: Then user should be redirected to the cart page', () => {
+        cy.url().should('include', '/cart.html')
+        cy.get('.title').should('have.text', 'Your Cart')
       })
 
-      it('Inventory Page: Then Cart badge shows 2', () => {
-        cy.get('.shopping_cart_badge').should('have.text', '2').and('be.visible')
+      it('Cart Page: Then the correct products are displayed', () => {
+        cy.get('.inventory_item_name')
+          .should('have.length', selectedProducts.length)
+          .each(($el) => {
+            const name = $el.text().trim()
+            expect(selectedProducts).to.include(name)
+          })
       })
 
-      it('Inventory Page: Then Remove button is changed back to Add to cart', () => {
-        cy.get('.inventory_item')
-          .eq(0)
-          .find('button')
-          .should('have.text', 'Add to cart')
-          .and('be.visible')
+      it('Cart Page: Then the number of items is correct', () => {
+        cy.get('.cart_item').should('have.length', selectedProducts.length)
       })
     })
   })
