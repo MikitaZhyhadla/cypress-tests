@@ -204,12 +204,12 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
         cy.get('.shopping_cart_link').click()
       })
 
-      it('Cart Page: Then user should be redirected to the cart page', () => {
+      it('Inventory Page: Then user should be redirected to the cart page', () => {
         cy.url().should('include', '/cart.html')
         cy.get('.title').should('have.text', 'Your Cart')
       })
 
-      it('Cart Page: Then the correct products are displayed', () => {
+      it('Inventory Page: Then the correct products are displayed', () => {
         cy.get('.inventory_item_name')
           .should('have.length', selectedProducts.length)
           .each(($el) => {
@@ -218,8 +218,31 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
           })
       })
 
-      it('Cart Page: Then the number of items is correct', () => {
+      it('Inventory Page: Then the number of items is correct', () => {
         cy.get('.cart_item').should('have.length', selectedProducts.length)
+      })
+    })
+
+    context('Cart Page: When user clicks "Continue Shopping" button', () => {
+      before(() => {
+        cy.get('.shopping_cart_link').click()
+        cy.url().should('include', '/cart')
+        cy.get('[data-test="continue-shopping"]').click()
+      })
+
+      it('Inventory Page: Then user is navigated back to inventory page', () => {
+        cy.url().should('include', '/inventory')
+        cy.get('.title').should('have.text', 'Products')
+      })
+
+      it('Inventory Page: Then the Remove button is displayed for the products added to the cart', () => {
+        selectedProducts.forEach((productName) => {
+          cy.contains('.inventory_item', productName).find('button').should('have.text', 'Remove')
+        })
+      })
+
+      it('Inventory Page: Then Cart badge shows 2', () => {
+        cy.get('.shopping_cart_badge').should('have.text', '2').and('be.visible')
       })
     })
   })
