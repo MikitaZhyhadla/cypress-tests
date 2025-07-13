@@ -82,7 +82,7 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
         })
     })
 
-    it('Inventory Page: Then the cart badge should not be visible when no items are added', () => {
+    it('Inventory Page: Then the cart badge should not show the number of products', () => {
       cy.get('.shopping_cart_badge').should('not.exist')
     })
 
