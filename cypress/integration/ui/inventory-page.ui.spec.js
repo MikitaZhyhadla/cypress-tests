@@ -245,5 +245,29 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
         cy.get('.shopping_cart_badge').should('have.text', '2').and('be.visible')
       })
     })
+
+    context('Inventory Page: When user removes all products from cart', () => {
+      before(() => {
+        cy.get('.inventory_item').each(($el) => {
+          cy.wrap($el)
+            .find('button')
+            .then(($btn) => {
+              if ($btn.text().includes('Remove')) {
+                cy.wrap($btn).click()
+              }
+            })
+        })
+      })
+
+      it('Inventory Page: Then all products should have "Add to cart" button', () => {
+        cy.get('.inventory_item').each(($el) => {
+          cy.wrap($el).find('button').should('have.text', 'Add to cart').and('be.visible')
+        })
+      })
+
+      it('Inventory Page: Then the cart badge should not show the number of products', () => {
+        cy.get('.shopping_cart_badge').should('not.exist')
+      })
+    })
   })
 })
