@@ -223,7 +223,7 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
       })
     })
 
-    context('Cart Page: When user clicks "Continue Shopping" button', () => {
+    context('Inventory Page: When user clicks "Continue Shopping" button', () => {
       before(() => {
         cy.get('.shopping_cart_link').click()
         cy.url().should('include', '/cart')
@@ -267,6 +267,33 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
 
       it('Inventory Page: Then the cart badge should not show the number of products', () => {
         cy.get('.shopping_cart_badge').should('not.exist')
+      })
+    })
+
+    context('Inventory Page: When user clicks on empty Cart badge', () => {
+      before(() => {
+        cy.get('.shopping_cart_link').click()
+      })
+
+      it('Inventory Page: Then user is redirected to the cart page', () => {
+        cy.url().should('include', '/cart')
+        cy.get('.title').should('have.text', 'Your Cart')
+      })
+
+      it('Inventory Page: Then cart should have no products', () => {
+        cy.get('.cart_item').should('have.length', 0)
+        cy.get('.shopping_cart_badge').should('not.exist')
+      })
+    })
+
+    context('Inventory Page: When user clicks on Continue Shopping button in empty cart', () => {
+      before(() => {
+        cy.get('[data-test="continue-shopping"]').click()
+      })
+
+      it('Inventory Page: Then user is navigated back to inventory page', () => {
+        cy.url().should('include', '/inventory')
+        cy.get('.title').should('have.text', 'Products')
       })
     })
   })
