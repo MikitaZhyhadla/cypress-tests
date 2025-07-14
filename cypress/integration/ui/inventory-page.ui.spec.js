@@ -112,13 +112,29 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
         .should('have.attr', 'href', 'https://www.linkedin.com/company/sauce-labs/')
     })
 
-    it('Inventory Page: Then the footer text should be visible and correct', () => {
-      cy.get('.footer_copy')
-        .should('be.visible')
-        .and(
-          'contain.text',
-          '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'
-        )
+    context('Inventory Page: When user navigates to footer legal section', () => {
+      it('Then the copyright notice should be visible and correct', () => {
+        cy.get('.footer_copy')
+          .should('be.visible')
+          .and(
+            'contain.text',
+            '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'
+          )
+      })
+
+      it.skip('Then the Terms of Service link should be present', () => {
+        // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/7
+        cy.get('.footer_copy a')
+          .contains('Terms of Service')
+          .should('have.attr', 'href', 'https://www.saucedemo.com/terms.html') // Add correct URL when known
+      })
+
+      it.skip('Then the Privacy Policy link should be present', () => {
+        // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/8
+        cy.get('.footer_copy a')
+          .contains('Privacy Policy')
+          .should('have.attr', 'href', 'https://www.saucedemo.com/privacy.html') // Add correct URL when known
+      })
     })
 
     it('Inventory Page: Then the filter should default to "Name (A to Z)" and sort items correctly', () => {
