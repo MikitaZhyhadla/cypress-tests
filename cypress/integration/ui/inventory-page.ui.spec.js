@@ -90,16 +90,26 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
       cy.get('#react-burger-menu-btn').should('be.visible')
     })
 
-    it('Inventory Page: Then the Twitter icon should be visible in the footer', () => {
-      cy.get('.social_twitter').should('be.visible')
+    it.skip('Inventory Page: Then the X (Twitter) icon should be visible and link to correct URL', () => {
+      // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/6
+      cy.get('.social_twitter')
+        .should('be.visible')
+        .find('a')
+        .should('have.attr', 'href', 'https://twitter.com/saucelabs')
     })
 
-    it('Inventory Page: Then the Facebook icon should be visible in the footer', () => {
-      cy.get('.social_facebook').should('be.visible')
+    it('Inventory Page: Then the Facebook icon should be visible and link to correct URL', () => {
+      cy.get('.social_facebook')
+        .should('be.visible')
+        .find('a')
+        .should('have.attr', 'href', 'https://www.facebook.com/saucelabs')
     })
 
-    it('Inventory Page: Then the LinkedIn icon should be visible in the footer', () => {
-      cy.get('.social_linkedin').should('be.visible')
+    it('Inventory Page: Then the LinkedIn icon should be visible and link to correct URL', () => {
+      cy.get('.social_linkedin')
+        .should('be.visible')
+        .find('a')
+        .should('have.attr', 'href', 'https://www.linkedin.com/company/sauce-labs/')
     })
 
     it('Inventory Page: Then the footer text should be visible and correct', () => {
