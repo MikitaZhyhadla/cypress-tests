@@ -47,8 +47,19 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
     })
   })
 
-  context.skip('Login Page: When user submits invalid credentials', () => {
-    it.skip('Then user should see invalid login error', () => {})
+  context('Login Page: When user submits invalid credentials', () => {
+    it('Then user should see invalid login error', () => {
+      cy.visit('/')
+      cy.get(loginPage.usernameInput).type('standard')
+      cy.get(loginPage.passwordInput).type('secret_sauce')
+      cy.get(loginPage.loginButton).click()
+      cy.get(loginPage.errorContainer)
+        .should('be.visible')
+        .and(
+          'have.text',
+          'Epic sadface: Username and password do not match any user in this service'
+        )
+    })
   })
 
   context('Login Page: When user submits valid standard credentials', () => {
