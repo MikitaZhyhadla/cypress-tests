@@ -6,5 +6,5 @@
 
 export const reqs = {
   minPasswordLength: 6,
-  maxUsernameLength: 20
-};
+  maxUsernameLength: 20,
+}

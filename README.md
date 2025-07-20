@@ -30,6 +30,7 @@ Make sure you:
 ## Code Formatting
 
 - **Format the entire project with Prettier**:
+
   ```bash
   npx prettier --write .
   ```
@@ -38,7 +39,7 @@ Make sure you:
   ```bash
   npx prettier --write cypress/integration/ui/inventory-page.ui.spec.js
   ```
-  
+
 ## Documentation
 
 - **[Git Workflow Strategy](docs/git-strategy.md)**
