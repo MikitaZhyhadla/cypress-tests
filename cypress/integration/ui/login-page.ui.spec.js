@@ -24,6 +24,10 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
   context('Login Page: When user submits empty credentials', () => {
     it.skip('Then user should see error for empty fields', () => {
       // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/2
+      cy.get(loginPage.loginButton).click()
+      cy.get(loginPage.errorMessage)
+        .should('be.visible')
+        .and('have.text', 'Epic sadface: Username and password are required')
     })
   })
 

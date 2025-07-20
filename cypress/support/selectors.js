@@ -5,6 +5,7 @@ const selectors = {
     passwordInput: '#password',
     loginButton: '#login-button',
     errorContainer: '[data-test="error"]',
+    errorMessage: '[data-test="error"]',
   },
   cartPage: {
     continueShopping: '[data-test="continue-shopping"]',
