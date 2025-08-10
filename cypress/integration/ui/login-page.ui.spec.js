@@ -71,4 +71,27 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
       cy.url().should('include', '/inventory.html')
     })
   })
+  
+  context('Login Page: When user logs out', () => {
+    before(() => {
+      cy.get('#react-burger-menu-btn').click()
+      cy.get('#logout_sidebar_link').click()
+    })
+
+    it('Login Page: Then login page title should be visible', () => {
+      cy.get(loginPage.title).should('have.text', l10n.login.title).and('be.visible')
+    })
+
+    it('Login Page: Then username input should be visible', () => {
+      cy.get(loginPage.usernameInput).should('be.visible')
+    })
+
+    it('Login Page: Then password input should be visible', () => {
+      cy.get(loginPage.passwordInput).should('be.visible')
+    })
+
+    it('Login Page: Then login button should be visible', () => {
+      cy.get(loginPage.loginButton).should('be.visible')
+    })
+  })
 })
