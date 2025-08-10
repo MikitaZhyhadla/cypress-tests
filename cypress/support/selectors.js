@@ -6,6 +6,9 @@ const selectors = {
     loginButton: '#login-button',
     errorContainer: '[data-test="error"]',
     errorMessage: '[data-test="error"]',
+    errorButton: '[data-test="error-button"]',
+    inputError: 'input.input_error',
+    errorIcon: 'svg',
   },
   cartPage: {
     continueShopping: '[data-test="continue-shopping"]',

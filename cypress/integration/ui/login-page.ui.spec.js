@@ -22,43 +22,109 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
   })
 
   context('Login Page: When user submits empty credentials', () => {
-    it.skip('Then user should see error for empty fields', () => {
-      // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/2
+    before(() => {
+      cy.visit('/')
       cy.get(loginPage.loginButton).click()
+    })
+
+    it.skip('Then error message should say "Epic sadface: Username and password are required"', () => {
+      // TODO: https://github.com/MikitaZhyhadla/cypress-tests/issues/2
       cy.get(loginPage.errorMessage)
         .should('be.visible')
         .and('have.text', 'Epic sadface: Username and password are required')
+    })
+
+    it('Then error close button should be shown', () => {
+      cy.get(loginPage.errorButton).should('be.visible')
+    })
+
+    it('Then username field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.usernameInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
+
+    it('Then password field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.passwordInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
     })
   })
 
   context('Login Page: When user submits locked out credentials', () => {
     before(() => {
       cy.visit('/')
-    })
-
-    it('Then user should see locked out error', () => {
       cy.get(loginPage.usernameInput).type('locked_out_user')
       cy.get(loginPage.passwordInput).type('secret_sauce')
       cy.get(loginPage.loginButton).click()
+    })
 
+    it('Then user should see locked out error', () => {
       cy.get(loginPage.errorContainer)
         .should('be.visible')
         .and('contain.text', 'Sorry, this user has been locked out.')
     })
+
+    it('Then error close button should be shown', () => {
+      cy.get(loginPage.errorButton).should('be.visible')
+    })
+
+    it('Then username field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.usernameInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
+
+    it('Then password field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.passwordInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
   })
 
   context('Login Page: When user submits invalid credentials', () => {
-    it('Then user should see invalid login error', () => {
+    before(() => {
       cy.visit('/')
       cy.get(loginPage.usernameInput).type('standard')
       cy.get(loginPage.passwordInput).type('secret_sauce')
       cy.get(loginPage.loginButton).click()
+    })
+
+    it('Then user should see invalid login error', () => {
       cy.get(loginPage.errorContainer)
         .should('be.visible')
         .and(
           'have.text',
           'Epic sadface: Username and password do not match any user in this service'
         )
+    })
+
+    it('Then error close button should be shown', () => {
+      cy.get(loginPage.errorButton).should('be.visible')
+    })
+
+    it('Then username field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.usernameInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
+
+    it('Then password field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.passwordInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
     })
   })
 
@@ -71,7 +137,7 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
       cy.url().should('include', '/inventory.html')
     })
   })
-  
+
   context('Login Page: When user logs out', () => {
     before(() => {
       cy.get('#react-burger-menu-btn').click()
