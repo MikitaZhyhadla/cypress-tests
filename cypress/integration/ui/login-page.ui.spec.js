@@ -55,6 +55,38 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
     })
   })
 
+  context('Login Page: When user clicks the error close button', () => {
+    const closeErrorIfVisible = () => {
+      cy.get('body').then(($body) => {
+        const $btn = $body.find(loginPage.errorCloseButton)
+        if ($btn.length) cy.wrap($btn).click()
+      })
+    }
+
+    it('Then error message should not be displayed', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.errorContainer).should('not.exist')
+    })
+
+    it('Then username field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.usernameInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+
+    it('Then password field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.passwordInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+  })
+
   context('Login Page: When user submits locked out credentials', () => {
     before(() => {
       cy.visit('/')
@@ -87,6 +119,38 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
         .parent()
         .find(loginPage.errorIcon)
         .should('exist')
+    })
+  })
+
+  context('Login Page: When user clicks the error close button', () => {
+    const closeErrorIfVisible = () => {
+      cy.get('body').then(($body) => {
+        const $btn = $body.find(loginPage.errorCloseButton)
+        if ($btn.length) cy.wrap($btn).click()
+      })
+    }
+
+    it('Then error message should not be displayed', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.errorContainer).should('not.exist')
+    })
+
+    it('Then username field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.usernameInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+
+    it('Then password field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.passwordInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
     })
   })
 
@@ -125,6 +189,38 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
         .parent()
         .find(loginPage.errorIcon)
         .should('exist')
+    })
+  })
+
+  context('Login Page: When user clicks the error close button', () => {
+    const closeErrorIfVisible = () => {
+      cy.get('body').then(($body) => {
+        const $btn = $body.find(loginPage.errorCloseButton)
+        if ($btn.length) cy.wrap($btn).click()
+      })
+    }
+
+    it('Then error message should not be displayed', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.errorContainer).should('not.exist')
+    })
+
+    it('Then username field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.usernameInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+
+    it('Then password field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.passwordInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
     })
   })
 
