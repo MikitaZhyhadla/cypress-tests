@@ -87,15 +87,14 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
     })
   })
 
-  context('Login Page: When user submits valid username without password', () => {
+  context('Login Page: When user submits valid username but empty password', () => {
     before(() => {
       cy.visit('/')
+      cy.get(loginPage.usernameInput).type(Cypress.env('users').standardUser.username)
+      cy.get(loginPage.loginButton).click()
     })
 
-    it('Then error message should say "Epic sadface: Password is required"', () => {
-      cy.get(loginPage.usernameInput).type('standard_user')
-      cy.get(loginPage.loginButton).click()
-
+    it('Login Page: Then error message should say "Epic sadface: Password is required"', () => {
       cy.get(loginPage.errorMessage)
         .should('be.visible')
         .and('have.text', 'Epic sadface: Password is required')
@@ -154,20 +153,19 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
     })
   })
 
-  context('Login Page: When user submits valid password without username', () => {
+  context('Login Page: When user submits valid password but empty username', () => {
     before(() => {
       cy.visit('/')
+      cy.get(loginPage.passwordInput).type(Cypress.env('users').standardUser.password)
+      cy.get(loginPage.loginButton).click()
     })
 
-    it('Then error message should say "Epic sadface: Username is required"', () => {
-      cy.get(loginPage.passwordInput).type('secret_sauce')
-      cy.get(loginPage.loginButton).click()
-
+    it('Login Page: Then error message should say "Epic sadface: Username is required"', () => {
       cy.get(loginPage.errorMessage)
         .should('be.visible')
         .and('have.text', 'Epic sadface: Username is required')
     })
-    
+
     it('Then error close button should be shown', () => {
       cy.get(loginPage.errorButton).should('be.visible')
     })
@@ -223,10 +221,7 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
 
   context('Login Page: When user submits locked out credentials', () => {
     before(() => {
-      cy.visit('/')
-      cy.get(loginPage.usernameInput).type('locked_out_user')
-      cy.get(loginPage.passwordInput).type('secret_sauce')
-      cy.get(loginPage.loginButton).click()
+      cy.loginAs(Cypress.env('users').lockedOutUser)
     })
 
     it('Then user should see locked out error', () => {
@@ -290,10 +285,7 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
 
   context('Login Page: When user submits invalid credentials', () => {
     before(() => {
-      cy.visit('/')
-      cy.get(loginPage.usernameInput).type('standard')
-      cy.get(loginPage.passwordInput).type('secret_sauce')
-      cy.get(loginPage.loginButton).click()
+      cy.loginAs(Cypress.env('users').invalidUser)
     })
 
     it('Then user should see invalid login error', () => {

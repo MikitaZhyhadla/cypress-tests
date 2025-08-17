@@ -22,5 +22,9 @@
   "PerformanceGlitchUser": {
     "username": "your_username",
     "password": "your_password"
+  },
+    "invalidUser": {
+      "username": "invalid_username",
+      "password": "invalid_password"
   }
 }
