@@ -87,6 +87,140 @@ describe('Login Page: Given user is on the login page', { testIsolation: false }
     })
   })
 
+  context('Login Page: When user submits valid username without password', () => {
+    before(() => {
+      cy.visit('/')
+    })
+
+    it('Then error message should say "Epic sadface: Password is required"', () => {
+      cy.get(loginPage.usernameInput).type('standard_user')
+      cy.get(loginPage.loginButton).click()
+
+      cy.get(loginPage.errorMessage)
+        .should('be.visible')
+        .and('have.text', 'Epic sadface: Password is required')
+    })
+
+    it('Then error close button should be shown', () => {
+      cy.get(loginPage.errorButton).should('be.visible')
+    })
+
+    it('Then username field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.usernameInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
+
+    it('Then password field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.passwordInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
+  })
+
+  context('Login Page: When user clicks the error close button', () => {
+    const closeErrorIfVisible = () => {
+      cy.get('body').then(($body) => {
+        const $btn = $body.find(loginPage.errorCloseButton)
+        if ($btn.length) cy.wrap($btn).click()
+      })
+    }
+
+    it('Then error message should not be displayed', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.errorContainer).should('not.exist')
+    })
+
+    it('Then username field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.usernameInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+
+    it('Then password field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.passwordInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+  })
+
+  context('Login Page: When user submits valid password without username', () => {
+    before(() => {
+      cy.visit('/')
+    })
+
+    it('Then error message should say "Epic sadface: Username is required"', () => {
+      cy.get(loginPage.passwordInput).type('secret_sauce')
+      cy.get(loginPage.loginButton).click()
+
+      cy.get(loginPage.errorMessage)
+        .should('be.visible')
+        .and('have.text', 'Epic sadface: Username is required')
+    })
+    
+    it('Then error close button should be shown', () => {
+      cy.get(loginPage.errorButton).should('be.visible')
+    })
+
+    it('Then username field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.usernameInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
+
+    it('Then password field should be highlighted and contain error icon', () => {
+      cy.get(loginPage.passwordInput)
+        .should('have.class', 'input_error')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('exist')
+    })
+  })
+
+  context('Login Page: When user clicks the error close button', () => {
+    const closeErrorIfVisible = () => {
+      cy.get('body').then(($body) => {
+        const $btn = $body.find(loginPage.errorCloseButton)
+        if ($btn.length) cy.wrap($btn).click()
+      })
+    }
+
+    it('Then error message should not be displayed', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.errorContainer).should('not.exist')
+    })
+
+    it('Then username field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.usernameInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+
+    it('Then password field should not be highlighted and contain error icon', () => {
+      closeErrorIfVisible()
+      cy.get(loginPage.passwordInput)
+        .should('be.visible')
+        .parent()
+        .find(loginPage.errorIcon)
+        .should('not.exist')
+    })
+  })
+
   context('Login Page: When user submits locked out credentials', () => {
     before(() => {
       cy.visit('/')
