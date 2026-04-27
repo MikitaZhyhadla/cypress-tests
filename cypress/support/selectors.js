@@ -8,7 +8,7 @@ const selectors = {
     errorMessage: '[data-test="error"]',
     errorButton: '[data-test="error-button"]',
     inputError: 'input.input_error',
-    errorIcon: 'svg',
+    errorIcon: 'button img, svg',
     errorCloseButton: '[data-test="error-button"]',
   },
   cartPage: {

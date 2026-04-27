@@ -118,7 +118,7 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
           .should('be.visible')
           .and(
             'contain.text',
-            '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'
+            `© ${new Date().getFullYear()} Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy`
           )
       })
 
@@ -320,6 +320,32 @@ describe('Inventory Page: Given user is authenticated', { testIsolation: false }
       it('Inventory Page: Then user is navigated back to inventory page', () => {
         cy.url().should('include', '/inventory')
         cy.get('.title').should('have.text', 'Products')
+      })
+    })
+
+    context('Inventory Page: When user logs out', () => {
+      before(() => {
+        cy.get('#react-burger-menu-btn')
+          .click()
+          .then(() => {
+            cy.get('#logout_sidebar_link').click()
+          })
+      })
+
+      it('Then login page title should be visible', () => {
+        cy.get(loginPage.title).should('have.text', l10n.login.title).and('be.visible')
+      })
+
+      it('Then username input should be visible', () => {
+        cy.get(loginPage.usernameInput).should('be.visible')
+      })
+
+      it('Then password input should be visible', () => {
+        cy.get(loginPage.passwordInput).should('be.visible')
+      })
+
+      it('Then login button should be visible', () => {
+        cy.get(loginPage.loginButton).should('be.visible')
       })
     })
   })

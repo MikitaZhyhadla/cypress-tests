@@ -4,6 +4,10 @@
     "usernamePlaceholder": "Username",
     "passwordPlaceholder": "Password",
     "loginButton": "Login",
-    "errorMessage": "Epic sadface: Username and password do not match any user in this service"
+    "errorMessage": "Epic sadface: Username and password do not match any user in this service",
+    "errorMessageRequired": "Epic sadface: Username and password are required",
+    "errorMessagePasswordRequired": "Epic sadface: Password is required",
+    "errorMessageUsernameRequired": "Epic sadface: Username is required",
+    "errorMessageLockedOut": "Sorry, this user has been locked out."
   }
 }
