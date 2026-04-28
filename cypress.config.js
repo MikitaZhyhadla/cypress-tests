@@ -1,6 +1,6 @@
-const { defineConfig } = require('cypress');
-const fs = require('fs');
-const path = require('path');
+const { defineConfig } = require('cypress')
+const fs = require('fs')
+const path = require('path')
 
 module.exports = defineConfig({
   e2e: {
@@ -8,12 +8,12 @@ module.exports = defineConfig({
     supportFile: 'cypress/support/e2e.js',
     specPattern: 'cypress/integration/**/*.js',
     setupNodeEvents(on, config) {
-      const usersPath = path.resolve(__dirname, 'cypress/sensitive-data/env-users.json');
+      const usersPath = path.resolve(__dirname, 'cypress/sensitive-data/env-users.json')
       if (fs.existsSync(usersPath)) {
-        const users = JSON.parse(fs.readFileSync(usersPath));
-        config.env.users = users;
+        const users = JSON.parse(fs.readFileSync(usersPath))
+        config.env.users = users
       }
-      return config;
-    }
-  }
-});
+      return config
+    },
+  },
+})

@@ -27,6 +27,19 @@ Make sure you:
 - Select the test file in the UI
 - Save `.js`, `.json`, or `.ts` files inside the `cypress/` folder
 
+## Code Formatting
+
+- **Format the entire project with Prettier**:
+
+  ```bash
+  npx prettier --write .
+  ```
+
+- **Format a specific file (e.g., inventory page tests)**:
+  ```bash
+  npx prettier --write cypress/integration/ui/inventory-page.ui.spec.js
+  ```
+
 ## Documentation
 
 - **[Git Workflow Strategy](docs/git-strategy.md)**

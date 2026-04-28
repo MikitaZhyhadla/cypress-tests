@@ -1,15 +1,19 @@
-// cypress/support/selectors.js
-
 const selectors = {
   loginPage: {
     title: '.login_logo',
     usernameInput: '#user-name',
     passwordInput: '#password',
     loginButton: '#login-button',
+    errorContainer: '[data-test="error"]',
+    errorMessage: '[data-test="error"]',
+    errorButton: '[data-test="error-button"]',
+    inputError: 'input.input_error',
+    errorIcon: 'button img, svg',
+    errorCloseButton: '[data-test="error-button"]',
   },
   cartPage: {
     continueShopping: '[data-test="continue-shopping"]',
-  }
-};
+  },
+}
 
-export default selectors;
+export default selectors
